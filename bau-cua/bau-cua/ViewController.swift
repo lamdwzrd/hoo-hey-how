@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     let IMG_GA:String = "ga"
     let IMG_NAI:String = "nai"
     let IMG_TOM:String = "tom"
+    let IMG_BACKGROUND:String = "background"
 
     var screenWidth:CGFloat?
     var screenHeight:CGFloat?
@@ -33,6 +34,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // background
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: IMG_BACKGROUND)
+        backgroundImage.contentMode = UIView.ContentMode.scaleToFill
+        self.view.insertSubview(backgroundImage, at: 0)
+        let blurredView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+        blurredView.alpha = 0.55
+        blurredView.frame = self.view.bounds
+        backgroundImage.addSubview(blurredView)
+        
         screenWidth = self.view.frame.width
         screenHeight = self.view.frame.height
         let HALF_SCREEN_WIDTH = screenWidth! / 2
@@ -42,9 +53,9 @@ class ViewController: UIViewController {
         // second animal
         secondAnimalView = UIImageView(
             frame: CGRect(
-                x: screenWidth!/8 * 3,
-                y: screenHeight!/100 * 15,
-                width: screenWidth!/4,
+                x: screenWidth! / 8 * 3,
+                y: screenHeight! / 100 * 15,
+                width: screenWidth! / 4,
                 height: HALF_SCREEN_HEIGHT)
         )
         secondAnimalView?.image = UIImage(named: IMG_CUA)
