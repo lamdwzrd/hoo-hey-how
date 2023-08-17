@@ -8,30 +8,29 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
-    let BUTTON_PLAY:String = "btnPlay"
-    let IMG_LEFT_DOOR:String = "left-door"
-    let IMG_RIGHT_DOOR:String = "right-door"
-    let IMG_BAU:String = "bau"
-    let IMG_CA:String = "ca"
-    let IMG_CUA:String = "cua"
-    let IMG_GA:String = "ga"
-    let IMG_NAI:String = "nai"
-    let IMG_TOM:String = "tom"
-    let IMG_BACKGROUND:String = "background"
+    let BUTTON_PLAY: String = "btnPlay"
+    let IMG_LEFT_DOOR: String = "left-door"
+    let IMG_RIGHT_DOOR: String = "right-door"
+    let IMG_BAU: String = "bau"
+    let IMG_CA: String = "ca"
+    let IMG_CUA: String = "cua"
+    let IMG_GA: String = "ga"
+    let IMG_NAI: String = "nai"
+    let IMG_TOM: String = "tom"
+    let IMG_BACKGROUND: String = "background"
 
-    var screenWidth:CGFloat?
-    var screenHeight:CGFloat?
-    var leftDoorView:UIImageView?
-    var rightDoorView:UIImageView?
-    var firstAnimalView:UIImageView?
-    var secondAnimalView:UIImageView?
-    var thirdAnimalView:UIImageView?
-    var dino:UIImageView?
-    var coin:UIImageView?
-    var animalArray:[String]?
-    var dinoImages:[UIImage]?
-    var coinImages:[UIImage]?
+    var screenWidth: CGFloat?
+    var screenHeight: CGFloat?
+    var leftDoorView: UIImageView?
+    var rightDoorView: UIImageView?
+    var firstAnimalView: UIImageView?
+    var secondAnimalView: UIImageView?
+    var thirdAnimalView: UIImageView?
+    var dino: UIImageView?
+    var coin: UIImageView?
+    var animalArray: [String]?
+    var dinoImages: [UIImage]?
+    var coinImages: [UIImage]?
     
     @IBOutlet weak var btnPlay: UIButton!
     
