@@ -27,7 +27,11 @@ class ViewController: UIViewController {
     var firstAnimalView:UIImageView?
     var secondAnimalView:UIImageView?
     var thirdAnimalView:UIImageView?
+    var dino:UIImageView?
+    var coin:UIImageView?
     var animalArray:[String]?
+    var dinoImages:[UIImage]?
+    var coinImages:[UIImage]?
     
     @IBOutlet weak var btnPlay: UIButton!
     
@@ -49,6 +53,8 @@ class ViewController: UIViewController {
         let HALF_SCREEN_WIDTH = screenWidth! / 2
         let HALF_SCREEN_HEIGHT = screenHeight! / 2
         animalArray = [IMG_BAU, IMG_CA, IMG_CUA, IMG_GA, IMG_NAI, IMG_TOM]
+        dinoImages = createImageArray(imageAmount: 8, imagePrefix: "run")
+        coinImages = createImageArray(imageAmount: 8, imagePrefix: "coin")
         
         // second animal
         secondAnimalView = UIImageView(
@@ -117,24 +123,56 @@ class ViewController: UIViewController {
         btnPlay.frame.origin.y = screenHeight! - btnPlay.frame.size.height * 2
         btnPlay.setBackgroundImage(UIImage(named: BUTTON_PLAY), for: .normal)
         btnPlay.setTitle("", for: .normal)
+                
+        // running dino
+        dino = UIImageView(
+            frame: CGRect(
+                x: 0 - screenWidth! / 4,
+                y: screenHeight! - btnPlay.frame.size.height * 3.5,
+                width: self.screenWidth! / 100 * 30,
+                height: self.screenHeight! / 100 * 40
+            )
+        )
+        dino?.image = UIImage(named: "run1")
+        view.addSubview(dino!)
+        
+        // scrolling coin
+        coin = UIImageView(
+            frame: CGRect(
+                x: 0 - screenWidth! / 10,
+                y: screenHeight! / 100 * 70,
+                width: self.screenWidth! / 100 * 10,
+                height: self.screenHeight! / 100 * 20
+            )
+        )
+        coin?.image = UIImage(named: "coin1")
+        view.addSubview(coin!)
     }
     
     @IBAction func newGame(_ sender: Any) {
-        UIView.animate(withDuration: 3) {
-            self.leftDoorView?.frame.origin.x = 0
-            self.rightDoorView?.frame.origin.x = self.screenWidth!/2
+        UIView.animate(withDuration: 3) { [self] in
+            leftDoorView?.frame.origin.x = 0
+            rightDoorView?.frame.origin.x = screenWidth! / 2
         } completion: { Bool in
-            Timer.scheduledTimer(timeInterval: 3, target: self,
-                                 selector: #selector(self.createNewRound),
-                                 userInfo: nil, repeats: false)
+            UIView.animate(withDuration: 3) { [self] in
+                activateAnimation(imageView: coin!, images: coinImages!)
+                coin?.frame.origin.x = view.frame.width + (dino?.frame.width)!
+                activateAnimation(imageView: dino!, images: dinoImages!)
+                dino?.frame.origin.x = view.frame.width
+                Timer.scheduledTimer(timeInterval: 3, target: self,
+                                     selector: #selector(createNewRound),
+                                     userInfo: nil, repeats: false)
+            }
         }
+        coin?.frame.origin.x = 0 - screenWidth! / 10
+        dino?.frame.origin.x = 0 - (coin?.frame.width)! - screenWidth! / 4
+        btnPlay.layer.removeAllAnimations()
     }
     
     @objc func createNewRound() {
         randomAnimal(animalView: firstAnimalView!)
         randomAnimal(animalView: secondAnimalView!)
         randomAnimal(animalView: thirdAnimalView!)
-        
         openDoor()
     }
     
@@ -146,7 +184,26 @@ class ViewController: UIViewController {
     }
     
     private func randomAnimal(animalView:UIImageView) {
-        let randomNumber:Int = Int.random(in: 0...animalArray!.count - 1)
+        let randomNumber:Int = Int.random(in: 0..<animalArray!.count)
         animalView.image = UIImage(named: animalArray![randomNumber])
+    }
+    
+    private func createImageArray(imageAmount: Int, imagePrefix: String) -> [UIImage] {
+        var imageArray: [UIImage] = []
+        
+        for index in 1...imageAmount {
+            let imageName = "\(imagePrefix)\(index)"
+            let image = UIImage(named: imageName)!
+            imageArray.append(image)
+        }
+        
+        return imageArray
+    }
+
+    private func activateAnimation(imageView:UIImageView, images:[UIImage]) {
+        imageView.animationDuration = 0.5
+        imageView.animationRepeatCount = 15
+        imageView.animationImages = images
+        imageView.startAnimating()
     }
 }
