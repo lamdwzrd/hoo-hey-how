@@ -14,6 +14,9 @@
 		B549C34F2A8B58A800DB4B46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B549C34E2A8B58A800DB4B46 /* Assets.xcassets */; };
 		B549C3522A8B58A800DB4B46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B549C3502A8B58A800DB4B46 /* LaunchScreen.storyboard */; };
 		B549C35A2A8B594F00DB4B46 /* images in Resources */ = {isa = PBXBuildFile; fileRef = B549C3592A8B594F00DB4B46 /* images */; };
+		B573E4622A8FAA2000A2A995 /* wheel-spin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B573E4602A8FAA2000A2A995 /* wheel-spin.mp3 */; };
+		B573E4652A8FAD0100A2A995 /* open-door.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B573E4632A8FAD0100A2A995 /* open-door.mp3 */; };
+		B573E4742A8FB10400A2A995 /* close-door.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B573E4732A8FB10400A2A995 /* close-door.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		B549C3512A8B58A800DB4B46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B549C3532A8B58A800DB4B46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B549C3592A8B594F00DB4B46 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		B573E4602A8FAA2000A2A995 /* wheel-spin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "wheel-spin.mp3"; sourceTree = "<group>"; };
+		B573E4632A8FAD0100A2A995 /* open-door.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "open-door.mp3"; sourceTree = "<group>"; };
+		B573E4732A8FB10400A2A995 /* close-door.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "close-door.mp3"; path = "../../../../../../../Downloads/close-door.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +72,19 @@
 				B549C3502A8B58A800DB4B46 /* LaunchScreen.storyboard */,
 				B549C3532A8B58A800DB4B46 /* Info.plist */,
 				B549C3592A8B594F00DB4B46 /* images */,
+				B573E45E2A8FA9FC00A2A995 /* sounds */,
 			);
 			path = "bau-cua";
+			sourceTree = "<group>";
+		};
+		B573E45E2A8FA9FC00A2A995 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				B573E4602A8FAA2000A2A995 /* wheel-spin.mp3 */,
+				B573E4632A8FAD0100A2A995 /* open-door.mp3 */,
+				B573E4732A8FB10400A2A995 /* close-door.mp3 */,
+			);
+			path = sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,10 +145,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B573E4622A8FAA2000A2A995 /* wheel-spin.mp3 in Resources */,
 				B549C35A2A8B594F00DB4B46 /* images in Resources */,
 				B549C3522A8B58A800DB4B46 /* LaunchScreen.storyboard in Resources */,
 				B549C34F2A8B58A800DB4B46 /* Assets.xcassets in Resources */,
 				B549C34D2A8B58A700DB4B46 /* Main.storyboard in Resources */,
+				B573E4742A8FB10400A2A995 /* close-door.mp3 in Resources */,
+				B573E4652A8FAD0100A2A995 /* open-door.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     let BUTTON_PLAY: String = "btnPlay"
@@ -31,6 +32,8 @@ class ViewController: UIViewController {
     var animalArray: [String]?
     var dinoImages: [UIImage]?
     var coinImages: [UIImage]?
+    
+    var audio: AVPlayer?
     
     @IBOutlet weak var btnPlay: UIButton!
     
@@ -152,8 +155,10 @@ class ViewController: UIViewController {
         UIView.animate(withDuration: 3) { [self] in
             leftDoorView?.frame.origin.x = 0
             rightDoorView?.frame.origin.x = screenWidth! / 2
+            playSound(audioName: "close-door")
         } completion: { Bool in
             UIView.animate(withDuration: 3) { [self] in
+                playSound(audioName: "wheel-spin")
                 activateAnimation(imageView: coin!, images: coinImages!)
                 coin?.frame.origin.x = view.frame.width + (dino?.frame.width)!
                 activateAnimation(imageView: dino!, images: dinoImages!)
@@ -176,9 +181,10 @@ class ViewController: UIViewController {
     }
     
     private func openDoor() {
-        UIView.animate(withDuration: 3) {
-            self.leftDoorView?.frame.origin.x = 0 - self.screenWidth!/2
-            self.rightDoorView?.frame.origin.x = self.screenWidth!
+        playSound(audioName: "open-door")
+        UIView.animate(withDuration: 3) { [self] in
+            leftDoorView?.frame.origin.x = 0 - screenWidth!/2
+            rightDoorView?.frame.origin.x = screenWidth!
         }
     }
     
@@ -204,5 +210,11 @@ class ViewController: UIViewController {
         imageView.animationRepeatCount = 15
         imageView.animationImages = images
         imageView.startAnimating()
+    }
+    
+    private func playSound(audioName: String) {
+        let url = Bundle.main.url(forResource: audioName, withExtension: "mp3")
+        audio = AVPlayer.init(url: url!)
+        audio?.play()
     }
 }
