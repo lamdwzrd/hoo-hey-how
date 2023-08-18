@@ -18,7 +18,6 @@ class ViewController: UIViewController {
     let IMG_GA: String = "ga"
     let IMG_NAI: String = "nai"
     let IMG_TOM: String = "tom"
-    let IMG_BACKGROUND: String = "background"
 
     var screenWidth: CGFloat?
     var screenHeight: CGFloat?
@@ -42,7 +41,7 @@ class ViewController: UIViewController {
         
         // background
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-        backgroundImage.image = UIImage(named: IMG_BACKGROUND)
+        backgroundImage.image = UIImage(named: "background")
         backgroundImage.contentMode = UIView.ContentMode.scaleToFill
         self.view.insertSubview(backgroundImage, at: 0)
         let blurredView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
