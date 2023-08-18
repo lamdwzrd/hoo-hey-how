@@ -152,25 +152,27 @@ class ViewController: UIViewController {
     }
     
     @IBAction func newGame(_ sender: Any) {
-        UIView.animate(withDuration: 3) { [self] in
-            leftDoorView?.frame.origin.x = 0
-            rightDoorView?.frame.origin.x = screenWidth! / 2
-            playSound(audioName: "close-door")
-        } completion: { Bool in
+        playSound(audioName: "click-button")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             UIView.animate(withDuration: 3) { [self] in
-                playSound(audioName: "wheel-spin")
-                activateAnimation(imageView: coin!, images: coinImages!)
-                coin?.frame.origin.x = view.frame.width + (dino?.frame.width)!
-                activateAnimation(imageView: dino!, images: dinoImages!)
-                dino?.frame.origin.x = view.frame.width
-                Timer.scheduledTimer(timeInterval: 3, target: self,
-                                     selector: #selector(createNewRound),
-                                     userInfo: nil, repeats: false)
+                leftDoorView?.frame.origin.x = 0
+                rightDoorView?.frame.origin.x = screenWidth! / 2
+                playSound(audioName: "close-door")
+            } completion: { Bool in
+                UIView.animate(withDuration: 3) { [self] in
+                    playSound(audioName: "wheel-spin")
+                    activateAnimation(imageView: coin!, images: coinImages!)
+                    coin?.frame.origin.x = view.frame.width + (dino?.frame.width)!
+                    activateAnimation(imageView: dino!, images: dinoImages!)
+                    dino?.frame.origin.x = view.frame.width
+                    Timer.scheduledTimer(timeInterval: 3, target: self,
+                                         selector: #selector(createNewRound),
+                                         userInfo: nil, repeats: false)
+                }
             }
+            self.coin?.frame.origin.x = 0 - self.screenWidth! / 10
+            self.dino?.frame.origin.x = 0 - (self.coin?.frame.width)! - self.screenWidth! / 4
         }
-        coin?.frame.origin.x = 0 - screenWidth! / 10
-        dino?.frame.origin.x = 0 - (coin?.frame.width)! - screenWidth! / 4
-        btnPlay.layer.removeAllAnimations()
     }
     
     @objc func createNewRound() {
@@ -215,6 +217,7 @@ class ViewController: UIViewController {
     private func playSound(audioName: String) {
         let url = Bundle.main.url(forResource: audioName, withExtension: "mp3")
         audio = AVPlayer.init(url: url!)
+        audio?.volume = 1.5
         audio?.play()
     }
 }
